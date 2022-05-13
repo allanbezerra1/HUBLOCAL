@@ -1,7 +1,20 @@
 import React from 'react'
 import DashboardWrapper, { DashboardWrapperMain, DashboardWrapperRight } from '../components/dashboard-wrapper/DashboardWrapper'
+import axios from 'axios';
+import { API } from '../configs';
+import config from '../components/rules/headers/headers'
 
 const Dashboard = () => {
+
+    const liveness = axios.get(API.liveness, config)
+        .then((response) => {
+            console.log('User Logado', response?.data)
+        })
+        .catch((error) => {
+            window.location.href = '/login'
+        })
+    console.log(liveness)
+
     return (
         <DashboardWrapper>
             <DashboardWrapperMain>
